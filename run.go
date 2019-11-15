@@ -14,7 +14,7 @@ func RunInDir(cmd, dir string) ([]byte, error) {
 	if os.Getenv("DEBUG") != "" {
 		log.Println(cmd)
 	}
-	command := exec.Command("bash", "-c", "set -o pipefail && "+cmd)
+	command := exec.Command("sh", "-c", "set -o pipefail && "+cmd)
 	command.Dir = dir
 	output, err := command.CombinedOutput()
 	if err != nil {
@@ -33,7 +33,7 @@ func RunInteractiveInDir(cmd, dir string) error {
 	if os.Getenv("DEBUG") != "" {
 		log.Println(cmd)
 	}
-	command := exec.Command("bash", "-c", "set -o pipefail && "+cmd)
+	command := exec.Command("sh", "-c", "set -o pipefail && "+cmd)
 	command.Stdout = os.Stdout
 	command.Stdin = os.Stdin
 	command.Stderr = os.Stderr
@@ -47,7 +47,7 @@ func RunInteractiveInDir(cmd, dir string) error {
 
 // RunWithInput ...
 func RunWithInput(cmd string, input []byte) ([]byte, error) {
-	command := exec.Command("bash", "-c", cmd)
+	command := exec.Command("sh", "-c", cmd)
 	command.Stdin = bytes.NewReader(input)
 	data, err := command.Output()
 	if err != nil {
@@ -66,7 +66,7 @@ func RunSecureInDir(cmd, dir string, secrets []string) ([]byte, error) {
 	if os.Getenv("DEBUG") != "" {
 		log.Println(SecureString(cmd, secrets))
 	}
-	command := exec.Command("bash", "-c", "set -o pipefail && "+cmd)
+	command := exec.Command("sh", "-c", "set -o pipefail && "+cmd)
 	command.Dir = dir
 	out, err := command.CombinedOutput()
 	return SecureByteArray(out, secrets), err
@@ -82,7 +82,7 @@ func RunSecureInteractiveInDir(cmd, dir string, secrets []string) error {
 	if os.Getenv("DEBUG") != "" {
 		log.Println(SecureString(cmd, secrets))
 	}
-	command := exec.Command("bash", "-c", "set -o pipefail && "+cmd)
+	command := exec.Command("sh", "-c", "set -o pipefail && "+cmd)
 	command.Stdout = SecureStd(os.Stdout, secrets)
 	command.Stdin = os.Stdin
 	command.Stderr = SecureStd(os.Stderr, secrets)
