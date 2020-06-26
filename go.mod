@@ -1,4 +1,4 @@
-module github.com/novacloudcz/goclitools
+module github.com/loopcontext/goclitools
 
 go 1.12
 
