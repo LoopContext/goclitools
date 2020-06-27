@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// SecureString ...
 func SecureString(input string, secrets []string) string {
 	if len(secrets) == 0 {
 		return input
@@ -20,6 +21,7 @@ func SecureString(input string, secrets []string) string {
 	return strings.NewReplacer(r...).Replace(input)
 }
 
+// SecureByteArray ...
 func SecureByteArray(input []byte, secrets []string) []byte {
 	if len(secrets) == 0 {
 		return input
@@ -32,6 +34,7 @@ func SecureByteArray(input []byte, secrets []string) []byte {
 	return data
 }
 
+// SecureStd ...
 func SecureStd(out *os.File, secrets []string) *os.File {
 	if len(secrets) == 0 {
 		return out

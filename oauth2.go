@@ -47,7 +47,8 @@ func OAuth2GetToken(conf *oauth2.Config) (*oauth2.Token, error) {
 	}
 
 	fmt.Println("token received, shutting down server...")
-	ctx, _ = context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
 	srv.Shutdown(ctx)
 
 	return tok, nil

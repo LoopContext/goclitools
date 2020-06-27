@@ -13,10 +13,12 @@ import (
 
 var promptCache map[string]string
 
+// Confirm input confirm
 func Confirm(text string) bool {
 	return ConfirmWithDefault(text, true)
 }
 
+// ConfirmWithDefault with default value
 func ConfirmWithDefault(text string, defaultValue bool) bool {
 	options := "[y/N]"
 	if defaultValue {

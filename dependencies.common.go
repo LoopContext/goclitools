@@ -1,5 +1,6 @@
 package goclitools
 
+// DependencyHomebrew dependency homebrew
 func DependencyHomebrew() Dependency {
 	return Dependency{
 		Name:     "Homebrew",
@@ -10,6 +11,7 @@ func DependencyHomebrew() Dependency {
 	}
 }
 
+// DependencyDocker docker dependency
 func DependencyDocker() Dependency {
 	return Dependency{
 		Name:         "Docker",
@@ -25,6 +27,7 @@ func DependencyDocker() Dependency {
 	}
 }
 
+// DependencyGit git dependency
 func DependencyGit() Dependency {
 	return Dependency{
 		Name:               "git",
@@ -33,6 +36,7 @@ func DependencyGit() Dependency {
 	}
 }
 
+// DependencyXcodebuild Xcode build
 func DependencyXcodebuild() Dependency {
 	return Dependency{
 		Name:               "xcodebuild",
@@ -41,6 +45,7 @@ func DependencyXcodebuild() Dependency {
 	}
 }
 
+// DependencyFastlane fastlane dependency
 func DependencyFastlane() Dependency {
 	return Dependency{
 		Name:               "fastlane",
@@ -58,6 +63,7 @@ func DependencyFastlane() Dependency {
 	}
 }
 
+// DependencyFastlaneMatch fastlane dependency
 func DependencyFastlaneMatch() Dependency {
 	return Dependency{
 		Name:               "fastlane match",

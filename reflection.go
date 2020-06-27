@@ -11,7 +11,7 @@ func ReflectionFill(o interface{}) error {
 	return ReflectionFillUsingObject(o, false)
 }
 
-// ReflectionFillWithObject ...
+// ReflectionFillUsingObject ...
 func ReflectionFillUsingObject(o interface{}, useExistingValues bool) error {
 	v := reflect.ValueOf(o)
 	if v.Kind() == reflect.Ptr && !v.IsNil() {

@@ -9,26 +9,32 @@ import (
 	"github.com/urfave/cli"
 )
 
+// DependencyScript interface - has to implement Run
 type DependencyScript interface {
 	Run() error
 }
 
+// DependencyScriptFn interface - has to implement Run
 type DependencyScriptFn struct {
 	Fn func() error
 }
 
+// Run runs the interface's fn
 func (script DependencyScriptFn) Run() error {
 	return script.Fn()
 }
 
+// DependencyScriptString interface
 type DependencyScriptString struct {
 	Fn string
 }
 
+// Run runs the dependency
 func (script DependencyScriptString) Run() error {
 	return RunInteractive(script.Fn)
 }
 
+// Dependency struct
 type Dependency struct {
 	Name               string
 	CheckCmd           string
@@ -38,6 +44,7 @@ type Dependency struct {
 	UninstallScripts   []DependencyScript
 }
 
+// Check checks the dependency
 func (d *Dependency) Check() (bool, error) {
 
 	output, err := Run(d.CheckCmd)
@@ -61,6 +68,7 @@ func (d *Dependency) Check() (bool, error) {
 	return string(output) != "", nil
 }
 
+// Install installs the dependency
 func (d *Dependency) Install() error {
 	res, _ := d.Check()
 	if res == true {
@@ -112,6 +120,7 @@ func (d *Dependency) Install() error {
 	return nil
 }
 
+// Uninstall uninstalls the dependency
 func (d *Dependency) Uninstall() error {
 	res, _ := d.Check()
 	if res == false {
